@@ -13,28 +13,191 @@
 <style>
     body {
         background-image: url('assets/img/background.png');
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 </style>
 <body>
 
+<nav class="nav">
+    <ul>
+        <li><a href="">About Me</a></li>
+        <li><a href="">Experience</a></li>
+        <li><a href="">Projects</a></li>
+        <li><a href="">Contact</a></li>
+    </ul>
+</nav>
+
 <div class="square">
     <div class="aboveAvatar">
-        <h2>Bryan Jeetun</h2>
-        <p>Student @ UCLL</p>
+        <h1>Bryan Jeetun</h1>
+        <p class="white">Student @ UCLL</p>
     </div>
 
     <img src="assets/img/bryan.png" alt="" style="width:250px" class="avatar">
-
-    <nav class="nav">
-        <ul>
-            <li><a href="">About Me</a></li>
-            <li><a href="">Experience</a></li>
-            <li><a href="">Projects</a></li>
-            <li><a href="">Contact</a></li>
-        </ul>
-    </nav>
-
 </div>
 
+
+    <ul class="social-icons">
+        <li><a href="https://www.facebook.com/bryan.jeetun"><img src='assets/img/facebook.png' /></a></li>
+        <li><a href="https://github.com/Bryan-Jeetun"><img src='assets/img/github.png' /></a></li>
+        <li><a href="https://www.linkedin.com/in/bryan-jeetun-11a662187/"><img src='assets/img/linkedin.png' /></a></li>
+    </ul>
+
+
 </body>
+
+<style>
+    #snowflakeContainer {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        display: none;
+    }
+
+    .snowflake {
+        position: fixed;
+        background-color: #CCC;
+        user-select: none;
+        z-index: 1000;
+        pointer-events: none;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+    }
+</style>
+
+<div id="snowflakeContainer">
+    <span class="snowflake"></span>
+</div>
+
+<script>
+    var snowflakes = [];
+
+    var browserWidth;
+    var browserHeight;
+
+    var numberOfSnowflakes = 75;
+
+    var resetPosition = false;
+
+    var enableAnimations = false;
+    var reduceMotionQuery = matchMedia("(prefers-reduced-motion)");
+
+    function setAccessibilityState() {
+        if (reduceMotionQuery.matches) {
+            enableAnimations = false;
+        } else {
+            enableAnimations = true;
+        }
+    }
+
+    setAccessibilityState();
+
+    reduceMotionQuery.addListener(setAccessibilityState);
+
+    function setup() {
+        if (enableAnimations) {
+            window.addEventListener("DOMContentLoaded", generateSnowflakes, false);
+            window.addEventListener("resize", setResetFlag, false);
+        }
+    }
+
+    setup();
+
+    function Snowflake(element, speed, xPos, yPos) {
+        this.element = element;
+        this.speed = speed;
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.scale = 1;
+
+        this.counter = 0;
+        this.sign = Math.random() < 0.5 ? 1 : -1;
+
+        this.element.style.opacity = (.1 + Math.random()) / 3;
+    }
+
+    Snowflake.prototype.update = function () {
+        this.counter += this.speed / 5000;
+        this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
+        this.yPos += Math.sin(this.counter) / 40 + this.speed / 30;
+        this.scale = .5 + Math.abs(10 * Math.cos(this.counter) / 20);
+
+        setTransform(Math.round(this.xPos), Math.round(this.yPos), this.scale, this.element);
+
+        if (this.yPos > browserHeight) {
+            this.yPos = -50;
+        }
+    }
+
+    function setTransform(xPos, yPos, scale, el) {
+        el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) scale(${scale}, ${scale})`;
+    }
+
+    function generateSnowflakes() {
+
+        var originalSnowflake = document.querySelector(".snowflake");
+
+        var snowflakeContainer = originalSnowflake.parentNode;
+        snowflakeContainer.style.display = "block";
+
+        browserWidth = document.documentElement.clientWidth;
+        browserHeight = document.documentElement.clientHeight;
+
+        for (var i = 0; i < numberOfSnowflakes; i++) {
+
+            var snowflakeClone = originalSnowflake.cloneNode(true);
+            snowflakeContainer.appendChild(snowflakeClone);
+
+            var initialXPos = getPosition(50, browserWidth);
+            var initialYPos = getPosition(50, browserHeight);
+            var speed = 5 + Math.random() * 40;
+
+            var snowflakeObject = new Snowflake(snowflakeClone,
+                speed,
+                initialXPos,
+                initialYPos);
+            snowflakes.push(snowflakeObject);
+        }
+
+        snowflakeContainer.removeChild(originalSnowflake);
+
+        moveSnowflakes();
+    }
+
+    function moveSnowflakes() {
+
+        if (enableAnimations) {
+            for (var i = 0; i < snowflakes.length; i++) {
+                var snowflake = snowflakes[i];
+                snowflake.update();
+            }
+        }
+
+        if (resetPosition) {
+            browserWidth = document.documentElement.clientWidth;
+            browserHeight = document.documentElement.clientHeight;
+
+            for (var i = 0; i < snowflakes.length; i++) {
+                var snowflake = snowflakes[i];
+
+                snowflake.xPos = getPosition(50, browserWidth);
+                snowflake.yPos = getPosition(50, browserHeight);
+            }
+
+            resetPosition = false;
+        }
+
+        requestAnimationFrame(moveSnowflakes);
+    }
+
+    function getPosition(offset, size) {
+        return Math.round(-1 * offset + Math.random() * (size + 2 * offset));
+    }
+
+    function setResetFlag(e) {
+        resetPosition = true;
+    }
+</script>
 </html>

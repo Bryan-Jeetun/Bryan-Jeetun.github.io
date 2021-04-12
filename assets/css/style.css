@@ -1,6 +1,5 @@
 body {
     background-image: url("/assets/img/background.png");
-    background-size: 500px;
 }
 
 
@@ -10,13 +9,15 @@ body {
     margin-right: auto;
     width: 50%;
     border-radius: 50%;
+    border: 1px solid deepskyblue;
+
 }
 
 .square {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    margin-top: 15%;
+    margin-top: 5%;
 }
 
 
@@ -44,7 +45,7 @@ li {
 
 .nav{
     list-style:none;
-    margin:0;
+    margin-top:75px;
     padding:0;
     text-align:center;
 }
@@ -58,4 +59,33 @@ li {
     color: deepskyblue;
     font-weight: bold;
     font-family: Verdana, sans-serif;
+}
+
+a:hover {
+    transition: color 0.5s ;
+    color: white;
+}
+
+
+.white {
+    color: white;
+}
+
+.social-icons {
+    text-align: center;
+    margin-top: 50px;
+}
+.social-icons li {
+    display:inline-block;
+    list-style-type:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+}
+.social-icons li a {
+    border-bottom: none;
+}
+.social-icons li img {
+    width:70px;
+    height:70px;
+    margin-right: 20px;
 }
