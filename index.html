@@ -8,6 +8,9 @@
     <title>Document</title>
 
     <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Coda+Caption:wght@800&family=Zen+Dots&display=swap"
+          rel="stylesheet">
 </head>
 
 <style>
@@ -21,31 +24,67 @@
 
 <nav class="nav">
     <ul>
-        <li><a href="">About Me</a></li>
-        <li><a href="">Experience</a></li>
-        <li><a href="">Projects</a></li>
-        <li><a href="">Contact</a></li>
+        <a href="javascript:void(0);" onclick="aboutMe()">About Me</a>
+        <a href="javascript:void(0);" onclick="experience()">Experience</a>
+        <a href="javascript:void(0);" onclick="projects()">Projects</a>
+        <a href="javascript:void(0);" onclick="contact()">Contact</a>
     </ul>
 </nav>
+
+<script>
+    function aboutMe() {
+        var x = document.getElementById("buttonText");
+        x.innerHTML = "My name is Bryan Jeetun, and I was born in Belgium. I have Mauritian roots, that's where my last name comes from. I love sitting behind my pc and learning new things but I also love doing other things." +
+            "I do a lot of sports and go for long walks with my dog. Already since I was a little kid, I sat for hours behind my pc. I was always exploring on the internet and trying to understand where everything comes from and how it works." +
+            "Since my parents speak French and I got sent to a Dutch school, I quickly learnt both languages and can now say that I perfectly speak both languages." +
+            "I also fluently speak English because nearly everything I do on the internet is in English. I also speak a little bit of German, but that's just the basics."
+    }
+
+    function experience() {
+        var x = document.getElementById("buttonText");
+        x.innerHTML = "I would not say I have a lot of experience yet because I am still very young but I can't wait to work with experienced people and learn from them." +
+            "I have worked on a lot of projects which most of the time I started on my own. On of those is my current project called Astro which is providing servers for different games for people to play on." +
+            "These servers daily reach around 1000 users. I have been doing such things since my very young years and it has learnt me a lot such as managing a community/staff and having a lot of responsibilities." +
+            "This also learned me how to work with others and learn from them. Most of my Java coding knowledge comes from watching others program and help them."
+    }
+
+    function projects() {
+        var x = document.getElementById("buttonText");
+        x.innerHTML = "I have done a few projects, examples of my projects are: Astro Servers, Setting up a working webshop, making a website for my friends' company and a lot more school-based projects"
+    }
+
+    function contact() {
+        var x = document.getElementById("buttonText");
+        x.innerHTML = "If you would like to contact me, you can always send me a mail on: bryan.jeetun@hotmail.com"
+    }
+</script>
+
+
 
 <div class="square">
     <div class="aboveAvatar">
         <h1>Bryan Jeetun</h1>
-        <p class="white">Student @ UCLL</p>
+        <p>Student @ UCLL</p>
     </div>
 
     <img src="assets/img/bryan.png" alt="" style="width:250px" class="avatar">
 </div>
 
 
-    <ul class="social-icons">
-        <li><a href="https://www.facebook.com/bryan.jeetun"><img src='assets/img/facebook.png' /></a></li>
-        <li><a href="https://github.com/Bryan-Jeetun"><img src='assets/img/github.png' /></a></li>
-        <li><a href="https://www.linkedin.com/in/bryan-jeetun-11a662187/"><img src='assets/img/linkedin.png' /></a></li>
-    </ul>
+<ul class="social-icons">
+    <li><a href="https://www.facebook.com/bryan.jeetun"><img src='assets/img/facebook.png'/></a></li>
+    <li><a href="https://github.com/Bryan-Jeetun"><img src='assets/img/github.png'/></a></li>
+    <li><a href="https://www.linkedin.com/in/bryan-jeetun-11a662187/"><img src='assets/img/linkedin.png'/></a></li>
+</ul>
+
+    <p class="underIcons">I'm a 19 years old student at the UCLL. I am currently in my second year of applied Informatics. I love programming and learning
+        new things!</p>
+
+<div class="buttonText" id="buttonText"></div>
 
 
 </body>
+
 
 <style>
     #snowflakeContainer {
