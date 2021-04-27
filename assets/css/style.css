@@ -33,7 +33,7 @@ li {
 }
 
 .aboveAvatar {
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
     font-family: 'Bebas Neue', cursive;
     font-size: 34px;
@@ -104,13 +104,13 @@ a:hover {
 .buttonText {
     color: black;
     font-family: 'Bebas Neue', cursive;
-    font-size: 30px;
+    font-size: 26px;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 85px;
 
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 750px;
+    width: 800px;
 
 }
